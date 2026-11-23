@@ -5,7 +5,7 @@
  .regPanel{min-height:calc(100svh - var(--cabecera) - 64px);display:flex;flex-direction:column}
  .regPanel form{flex:1;display:flex;flex-direction:column}
  .regPanel .step.on{flex:1;display:flex;flex-direction:column}
- .regPanel .grid12{row-gap:clamp(22px,4.6vh,48px)}
+ .regPanel .grid12{row-gap:clamp(20px,calc(11.4vh - 61px),48px)}
  .regPanel .stepHead{margin-bottom:clamp(22px,3.4vh,40px)}
  .regPanel .navRow{margin-top:auto}}
 .reg .eyebrow{font-family:var(--font-montserrat);font-size:10.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:color-mix(in srgb,var(--foreground) 55%,transparent);margin:0}
@@ -70,7 +70,7 @@
 .err:empty{display:none}
 .fld.bad input:not([type=checkbox]),.fld.bad select{border-bottom-color:var(--accent-deep)}
 .fld.bad textarea,.fld.bad .box{border-color:var(--accent-deep)}
-.navRow{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-top:30px;padding-top:28px}
+.navRow{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-top:30px;padding-top:20px}
 .cta{all:unset;box-sizing:border-box;display:inline-flex;align-items:center;gap:12px;width:fit-content;border-bottom:1px solid color-mix(in srgb,var(--foreground) 35%,transparent);padding-bottom:8px;font-family:var(--font-montserrat);font-size:10.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--foreground);cursor:pointer;transition:gap .3s,border-color .3s,color .3s}
 .cta:hover{gap:20px;border-color:var(--foreground)}
 .cta:focus-visible{outline:2px solid var(--foreground);outline-offset:4px}
@@ -83,6 +83,12 @@
 .done{outline:0}
 .done .stepTitle{margin-top:12px}
 .doneCtas{display:flex;flex-wrap:wrap;gap:16px 32px;margin-top:36px}
+.cta.nc{align-items:flex-end;gap:14px;padding-bottom:8px;text-transform:none;letter-spacing:0;font-size:inherit}
+.cta.nc .nx{display:flex;flex-direction:column;align-items:flex-start}
+.cta.nc small{font:500 9.5px/1 var(--font-montserrat);letter-spacing:.16em;text-transform:uppercase;color:color-mix(in srgb,var(--foreground) 55%,transparent);margin-bottom:8px}
+.cta.nc b{font:300 22px/1.1 var(--font-league-spartan);letter-spacing:-.01em}
+.cta.nc svg{width:18px;height:18px;margin-bottom:2px}
+.cta.nc:hover{gap:22px}
 
 .fld{position:relative}
 .comboBox,.addrBox{position:relative}
@@ -5736,7 +5742,7 @@ body{font-family:var(--font-sans)}</style><meta charSet="utf-8"/><meta name="vie
     <label class="fld c6" for="f-como_nos_ha_conocido_"><span class="lab">How did you hear about us?<span class="req" aria-hidden="true">*</span></span><input type="text" id="f-como_nos_ha_conocido_" name="como_nos_ha_conocido_" data-obj="0-1" required><span class="err" aria-live="polite"></span></label>
     <input type="hidden" name="hs_lead_status" data-obj="0-1" value="En proceso - Ha rellenado ficha alta cliente">
   </div>
-  <div class="navRow"><span></span><button type="button" class="cta" data-next>Next<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="9 6 15 12 9 18"></polyline></svg></button></div>
+  <div class="navRow"><span></span><button type="button" class="cta nc" data-next><span class="nx"><small>Next step</small><b>Shipping Information</b></span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="9 6 15 12 9 18"></polyline></svg></button></div>
 </div>
 <div role="group" aria-labelledby="st1" class="step" data-step="1" hidden>
   <div class="stepHead" id="st1"><span class="eyebrow">Step 02 of 03</span><span class="stepTitle">Shipping Information</span></div>
@@ -5749,7 +5755,7 @@ body{font-family:var(--font-sans)}</style><meta charSet="utf-8"/><meta name="vie
     <label class="fld c6" for="f-shipping_postal_code"><span class="lab">Shipping Postal Code</span><input type="text" id="f-shipping_postal_code" name="shipping_postal_code" data-obj="0-1"><span class="err" aria-live="polite"></span></label>
     <label class="fld c6" for="f-shipping_city"><span class="lab">Shipping City</span><input type="text" id="f-shipping_city" name="shipping_city" data-obj="0-1"><span class="err" aria-live="polite"></span></label>
   </div>
-  <div class="navRow"><button type="button" class="cta quiet" data-prev><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="15 6 9 12 15 18"></polyline></svg>Previous</button><button type="button" class="cta" data-next>Next<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="9 6 15 12 9 18"></polyline></svg></button></div>
+  <div class="navRow"><button type="button" class="cta quiet" data-prev><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="15 6 9 12 15 18"></polyline></svg>Previous</button><button type="button" class="cta nc" data-next><span class="nx"><small>Next step</small><b>Comments</b></span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="9 6 15 12 9 18"></polyline></svg></button></div>
 </div>
 <div role="group" aria-labelledby="st2" class="step" data-step="2" hidden>
   <div class="stepHead" id="st2"><span class="eyebrow">Step 03 of 03</span><span class="stepTitle">Comments</span></div>
@@ -5757,7 +5763,7 @@ body{font-family:var(--font-sans)}</style><meta charSet="utf-8"/><meta name="vie
     <label class="fld c12" for="f-comentarios_formulario"><span class="lab">Is there anything else you would like to add or share with us?</span><textarea rows="4" id="f-comentarios_formulario" name="comentarios_formulario" data-obj="0-1"></textarea><span class="err" aria-live="polite"></span></label>
     <label class="fld check c12"><input type="checkbox" value="true" id="f-acepto_que_rols_carpets_pueda_almacenar_y_procesar_mis_datos_personales_de_acuerdo_a_la_politica_de" name="acepto_que_rols_carpets_pueda_almacenar_y_procesar_mis_datos_personales_de_acuerdo_a_la_politica_de" data-obj="0-1" required><span class="box" aria-hidden="true"></span><span class="ctext">I agree that Rols Carpets may store and process my personal data in accordance with the company's <a href="https://www.rolscarpets.com/en/privacy-policy/" target="_blank" rel="noopener">privacy policy</a>.<span class="req" aria-hidden="true">*</span></span><span class="err" aria-live="polite"></span></label>
   </div>
-  <div class="navRow"><button type="button" class="cta quiet" data-prev><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="15 6 9 12 15 18"></polyline></svg>Previous</button><button type="submit" class="cta">Submit<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="9 6 15 12 9 18"></polyline></svg></button></div>
+  <div class="navRow"><button type="button" class="cta quiet" data-prev><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="15 6 9 12 15 18"></polyline></svg>Previous</button><button type="submit" class="cta nc"><span class="nx"><small>Last step</small><b>Submit</b></span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="9 6 15 12 9 18"></polyline></svg></button></div>
 </div>
       <p class="formErr" role="alert" hidden></p>
     </form>
