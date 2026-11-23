@@ -83,6 +83,45 @@
 .done{outline:0}
 .done .stepTitle{margin-top:12px}
 .doneCtas{display:flex;flex-wrap:wrap;gap:16px 32px;margin-top:36px}
+
+.fld{position:relative}
+.comboBox,.addrBox{position:relative}
+.comboBox .flag{position:absolute;left:0;top:50%;transform:translateY(-50%);width:20px;height:14px;object-fit:cover;border-radius:2px;box-shadow:0 0 0 1px rgba(51,58,60,.1)}
+.comboBox .flag[hidden]{display:none}
+.comboBox.has-flag .comboInput{padding-left:30px}
+.fld .comboInput{padding-right:24px!important}
+.comboBox .chev,.dialBtn .chev{width:7px;height:7px;border-right:1.2px solid currentColor;border-bottom:1.2px solid currentColor;transform:rotate(45deg);pointer-events:none}
+.comboBox .chev{position:absolute;right:2px;top:50%;margin-top:-6px}
+.fld input::placeholder{color:color-mix(in srgb,var(--foreground) 35%,transparent);font-weight:300}
+.addrBox .lupa{position:absolute;left:0;top:50%;width:16px;height:16px;transform:translateY(-50%);color:color-mix(in srgb,var(--foreground) 55%,transparent);pointer-events:none}
+.fld .addrBox input{padding-left:26px}
+.phoneBox{display:flex;align-items:stretch;gap:14px}
+.dialBtn{all:unset;box-sizing:border-box;flex:none;display:flex;align-items:center;gap:8px;padding:8px 2px 7px 0;border-bottom:1px solid color-mix(in srgb,var(--foreground) 30%,transparent);cursor:pointer;font:300 14px/1.4 var(--font-montserrat);color:var(--foreground)}
+.dialBtn:focus-visible{outline:2px solid var(--foreground);outline-offset:3px}
+.dialBtn .flag{width:20px;height:14px;object-fit:cover;border-radius:2px;box-shadow:0 0 0 1px rgba(51,58,60,.1)}
+.dialBtn .chev{margin:-4px 2px 0 4px}
+.phoneBox input{flex:1;min-width:0}
+.comboList{position:absolute;z-index:30;left:0;right:0;top:calc(100% - 2px);margin:0;padding:6px;list-style:none;max-height:264px;overflow-y:auto;overflow-x:hidden;background:var(--background);border:1px solid var(--line);border-radius:12px;box-shadow:0 14px 34px rgba(51,58,60,.12)}
+.comboList[hidden]{display:none}
+.comboList li{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:8px;font-size:13px;font-weight:300;line-height:1.35;cursor:pointer}
+.comboList li img{width:20px;height:14px;flex:none;object-fit:cover;border-radius:2px;box-shadow:0 0 0 1px rgba(51,58,60,.1)}
+.comboList li .dc{margin-left:auto;color:color-mix(in srgb,var(--foreground) 55%,transparent)}
+.comboList li .sub{display:block;font-size:11.5px;color:color-mix(in srgb,var(--foreground) 55%,transparent)}
+.comboList li.act,.comboList li:hover{background:var(--surface)}
+.comboList li[aria-selected=true]{font-weight:400}
+.comboList .empty{cursor:default;color:color-mix(in srgb,var(--foreground) 50%,transparent)}
+.comboList .empty:hover{background:none}
+.comboList .gfoot{justify-content:flex-end;cursor:default;padding:6px 10px 2px;font-size:10px;color:color-mix(in srgb,var(--foreground) 45%,transparent)}
+.comboList .gfoot:hover{background:none}
+.dialPop{position:absolute;z-index:30;left:0;top:calc(100% - 2px);width:min(340px,100%);background:var(--background);border:1px solid var(--line);border-radius:12px;box-shadow:0 14px 34px rgba(51,58,60,.12);padding:10px}
+.dialPop[hidden]{display:none}
+.dialSearchBox{position:relative;margin:0 4px 6px}
+.dialSearchBox .lupa{position:absolute;left:0;top:50%;width:15px;height:15px;transform:translateY(-50%);color:color-mix(in srgb,var(--foreground) 55%,transparent)}
+.fld .dialSearch{padding-left:24px!important}
+.comboList.inPop{position:static;border:0;box-shadow:none;padding:0;max-height:240px}
+.cta.go{font-size:12px;letter-spacing:.16em;gap:14px;padding-bottom:9px;border-bottom:1.5px solid var(--foreground)}
+.cta.go svg{width:16px;height:16px}
+.cta.go:hover{gap:22px;border-bottom-color:var(--accent-deep)}
 </style></head><body><style>/* [next]/internal/font/google/montserrat_14730532.module.css [app-client] (css) */
 @font-face {
   font-family: Montserrat;
@@ -5680,29 +5719,29 @@ body{font-family:var(--font-sans)}</style><meta charSet="utf-8"/><meta name="vie
     <label class="fld c6" for="f-company"><span class="lab">Legal company name<span class="req" aria-hidden="true">*</span></span><input type="text" id="f-company" name="company" data-obj="0-1" required autocomplete="organization"><span class="err" aria-live="polite"></span></label>
     <label class="fld c6" for="f-name"><span class="lab">Trade name</span><input type="text" id="f-name" name="name" data-obj="0-2"><span class="err" aria-live="polite"></span></label>
     <label class="fld c6" for="f-sector_para_formulario_hubspot"><span class="lab">Professional sector<span class="req" aria-hidden="true">*</span></span><span class="sel"><select id="f-sector_para_formulario_hubspot" name="sector_para_formulario_hubspot" data-obj="0-1" required><option value="" selected disabled hidden></option><option value="Arquitecto">Architect</option><option value="Interiorista">Interior Designer</option><option value="Hotel">Hotel</option><option value="Distribuidor">Dealer</option><option value="Tienda">Retailer</option><option value="Otro">Other</option></select></span><span class="err" aria-live="polite"></span></label>
-    <label class="fld c6" for="f-billing_address_line_1"><span class="lab">Billing Address<span class="req" aria-hidden="true">*</span></span><input type="text" id="f-billing_address_line_1" name="billing_address_line_1" data-obj="0-1" required><span class="err" aria-live="polite"></span></label>
+    <div class="fld addr c6" data-addr="billing"><label class="lab" for="f-billing_address_line_1">Billing Address<span class="req" aria-hidden="true">*</span></label><div class="addrBox"><svg class="lupa" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5"></path></svg><input type="text" id="f-billing_address_line_1" name="billing_address_line_1" data-obj="0-1" role="combobox" aria-autocomplete="list" aria-controls="lb-billing_address_line_1" autocomplete="off" placeholder="Start typing your address" required></div><ul class="comboList" id="lb-billing_address_line_1" role="listbox" hidden></ul><span class="err" aria-live="polite"></span></div>
     <label class="fld c3" for="f-zip"><span class="lab">ZIP code<span class="req" aria-hidden="true">*</span></span><input type="text" id="f-zip" name="zip" data-obj="0-1" required autocomplete="postal-code"><span class="err" aria-live="polite"></span></label>
     <label class="fld c3" for="f-billing_city"><span class="lab">Billing city<span class="req" aria-hidden="true">*</span></span><input type="text" id="f-billing_city" name="billing_city" data-obj="0-1" required><span class="err" aria-live="polite"></span></label>
-    <label class="fld c6" for="f-pais"><span class="lab">Country<span class="req" aria-hidden="true">*</span></span><span class="sel"><select id="f-pais" name="pais" data-obj="0-1" required><option value="" selected disabled hidden></option><option value="Albania">Albania</option><option value="Argelia">Algeria</option><option value="Andorra">Andorra</option><option value="Argentina">Argentina</option><option value="Armenia">Armenia</option><option value="Australia">Australia</option><option value="Austria">Austria</option><option value="Azerbaiyán">Azerbaijan</option><option value="Baréin">Bahrain</option><option value="Barbados">Barbados</option><option value="Bélgica">Belgium</option><option value="Brasil">Brazil</option><option value="Bulgaria">Bulgaria</option><option value="Camboya">Cambodia</option><option value="Camerún">Cameroon</option><option value="Canada">Canada</option><option value="Cabo Verde">Cape Verde</option><option value="Chile">Chile</option><option value="Colombia">Colombia</option><option value="Costa Rica">Costa Rica</option><option value="Croacia">Croatia</option><option value="Chipre">Cyprus</option><option value="República Checa">Czech Republic</option><option value="Dinamarca">Denmark</option><option value="República Dominicana">Dominican Republic</option><option value="Ecuador">Ecuador</option><option value="Egipto">Egypt</option><option value="El Salvador">El Salvador</option><option value="Estonia">Estonia</option><option value="Finlandia">Finland</option><option value="Francia">France</option><option value="Polinesia Francesa">French Polynesia</option><option value="Gabón">Gabon</option><option value="Georgia">Georgia</option><option value="Alemania">Germany</option><option value="Grecia">Greece</option><option value="Guatemala">Guatemala</option><option value="Hong Kong">Hong Kong</option><option value="Hungría">Hungary</option><option value="Islandia">Iceland</option><option value="India">India</option><option value="Indonesia">Indonesia</option><option value="Irán">Iran</option><option value="Irlanda">Ireland</option><option value="Israel">Israel</option><option value="Italia">Italy</option><option value="Costa de Marfil">Ivory Coast</option><option value="Japón">Japan</option><option value="Jordania">Jordan</option><option value="Kazajistán">Kazakhstan</option><option value="Kuwait">Kuwait</option><option value="Letonia">Latvia</option><option value="Líbano">Lebanon</option><option value="Libia">Libya</option><option value="Lituania">Lithuania</option><option value="Luxemburgo">Luxembourg</option><option value="Macedonia">Macedonia</option><option value="Malasia">Malaysia</option><option value="Malta">Malta</option><option value="Mauricio">Mauritius</option><option value="México">Mexico</option><option value="Moldavia">Moldova</option><option value="Mónaco">Monaco</option><option value="Montenegro">Montenegro</option><option value="Marruecos">Morocco</option><option value="Paises Bajos">Netherlands</option><option value="Nueva Zelanda">New Zealand</option><option value="Nicaragua">Nicaragua</option><option value="Noruega">Norway</option><option value="Omán">Oman</option><option value="Panamá">Panama</option><option value="Paraguay">Paraguay</option><option value="Perú">Peru</option><option value="Filipinas">Philippines</option><option value="Polonia">Poland</option><option value="Portugal">Portugal</option><option value="Puerto Rico">Puerto Rico</option><option value="Qatar">Qatar</option><option value="Rumanía">Romania</option><option value="Rusia">Russia</option><option value="Arabia Saudita">Saudi Arabia</option><option value="Escocia">Scotland</option><option value="Serbia">Serbia</option><option value="Sierra Leona">Sierra Leone</option><option value="Singapur">Singapore</option><option value="Eslovaquia">Slovakia</option><option value="Eslovenia">Slovenia</option><option value="Sudáfrica">South Africa</option><option value="Corea del Sur">South Korea</option><option value="España">Spain</option><option value="Suecia">Sweden</option><option value="Suiza">Switzerland</option><option value="Taiwan">Taiwan</option><option value="Tailandia">Thailand</option><option value="Túnez">Tunisia</option><option value="Turquía">Turkey</option><option value="Ucrania">Ukraine</option><option value="Emiratos Árabes Unidos">United Arab Emirates</option><option value="Reino Unido">United Kingdom</option><option value="Estados Unidos">United States</option><option value="Uruguay">Uruguay</option><option value="Uzbekistán">Uzbekistan</option><option value="Vanuatu">Vanuatu</option><option value="Venezuela">Venezuela</option><option value="Vietnam">Vietnam</option></select></span><span class="err" aria-live="polite"></span></label>
+    <div class="fld combo c6" data-country><label class="lab" for="f-pais">Country<span class="req" aria-hidden="true">*</span></label><div class="comboBox"><img class="flag" alt="" hidden><input type="text" id="f-pais" class="comboInput" role="combobox" aria-autocomplete="list" aria-controls="lb-pais" autocomplete="off" spellcheck="false" placeholder="Type to search" data-combo required><span class="chev" aria-hidden="true"></span></div><ul class="comboList" id="lb-pais" role="listbox" hidden></ul><input type="hidden" name="pais" data-obj="0-1"><span class="err" aria-live="polite"></span></div>
     <label class="fld c6" for="f-correo_de_facturacion"><span class="lab">Billing e-mail<span class="req" aria-hidden="true">*</span></span><input type="email" id="f-correo_de_facturacion" name="correo_de_facturacion" data-obj="0-1" required><span class="err" aria-live="polite"></span></label>
     <label class="fld c6" for="f-email"><span class="lab">Email for commercial communications<span class="req" aria-hidden="true">*</span></span><input type="email" id="f-email" name="email" data-obj="0-1" required autocomplete="email"><span class="err" aria-live="polite"></span></label>
     <label class="fld c6" for="f-como_nos_ha_conocido_"><span class="lab">How did you hear about us?<span class="req" aria-hidden="true">*</span></span><input type="text" id="f-como_nos_ha_conocido_" name="como_nos_ha_conocido_" data-obj="0-1" required><span class="err" aria-live="polite"></span></label>
     <input type="hidden" name="hs_lead_status" data-obj="0-1" value="En proceso - Ha rellenado ficha alta cliente">
   </div>
-  <div class="navRow"><span></span><button type="button" class="cta" data-next>Next<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="9 6 15 12 9 18"></polyline></svg></button></div>
+  <div class="navRow"><span></span><button type="button" class="cta go" data-next>Next<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="9 6 15 12 9 18"></polyline></svg></button></div>
 </div>
 <div role="group" aria-labelledby="st1" class="step" data-step="1" hidden>
   <div class="stepHead" id="st1"><span class="eyebrow">Step 02 of 03</span><span class="stepTitle">Shipping Information</span></div>
   <div class="grid12">
     <label class="fld c12" for="f-firstname"><span class="lab">Full Name (Contact Person for Shipments)<span class="req" aria-hidden="true">*</span></span><input type="text" id="f-firstname" name="firstname" data-obj="0-1" required><span class="err" aria-live="polite"></span></label>
     <label class="fld c6" for="f-correo_electrnico"><span class="lab">E-mail for Shipping<span class="req" aria-hidden="true">*</span></span><input type="email" id="f-correo_electrnico" name="correo_electrnico" data-obj="0-1" required><span class="err" aria-live="polite"></span></label>
-    <label class="fld c6" for="f-phone"><span class="lab">Phone Number for Shipping<span class="req" aria-hidden="true">*</span></span><input type="tel" id="f-phone" name="phone" data-obj="0-1" required autocomplete="tel"><span class="err" aria-live="polite"></span></label>
+    <div class="fld phone c6"><label class="lab" for="f-phone">Phone Number for Shipping<span class="req" aria-hidden="true">*</span></label><div class="phoneBox"><button type="button" class="dialBtn" data-dial="34" data-iso="es" title="Country code"><img class="flag" src="https://flagcdn.com/es.svg" alt=""><span class="dialCode">+34</span><span class="chev" aria-hidden="true"></span></button><input type="tel" id="f-phone" name="phone" data-obj="0-1" autocomplete="tel-national" inputmode="tel" required></div><div class="dialPop" hidden><div class="dialSearchBox"><svg class="lupa" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5"></path></svg><input type="text" class="dialSearch nochk" role="combobox" aria-autocomplete="list" aria-controls="lb-dial" autocomplete="off" spellcheck="false" placeholder="Search country or code"></div><ul class="comboList inPop" id="lb-dial" role="listbox"></ul></div><span class="err" aria-live="polite"></span></div>
     <p class="note c12">Fill in only if different from the billing address.</p>
-    <label class="fld c12" for="f-shipping_address_line_1"><span class="lab">Shipping Address</span><input type="text" id="f-shipping_address_line_1" name="shipping_address_line_1" data-obj="0-1"><span class="err" aria-live="polite"></span></label>
+    <div class="fld addr c12" data-addr="shipping"><label class="lab" for="f-shipping_address_line_1">Shipping Address</label><div class="addrBox"><svg class="lupa" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5"></path></svg><input type="text" id="f-shipping_address_line_1" name="shipping_address_line_1" data-obj="0-1" role="combobox" aria-autocomplete="list" aria-controls="lb-shipping_address_line_1" autocomplete="off" placeholder="Start typing your address"></div><ul class="comboList" id="lb-shipping_address_line_1" role="listbox" hidden></ul><span class="err" aria-live="polite"></span></div>
     <label class="fld c6" for="f-shipping_postal_code"><span class="lab">Shipping Postal Code</span><input type="text" id="f-shipping_postal_code" name="shipping_postal_code" data-obj="0-1"><span class="err" aria-live="polite"></span></label>
     <label class="fld c6" for="f-shipping_city"><span class="lab">Shipping City</span><input type="text" id="f-shipping_city" name="shipping_city" data-obj="0-1"><span class="err" aria-live="polite"></span></label>
   </div>
-  <div class="navRow"><button type="button" class="cta quiet" data-prev><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="15 6 9 12 15 18"></polyline></svg>Previous</button><button type="button" class="cta" data-next>Next<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="9 6 15 12 9 18"></polyline></svg></button></div>
+  <div class="navRow"><button type="button" class="cta quiet" data-prev><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="15 6 9 12 15 18"></polyline></svg>Previous</button><button type="button" class="cta go" data-next>Next<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="9 6 15 12 9 18"></polyline></svg></button></div>
 </div>
 <div role="group" aria-labelledby="st2" class="step" data-step="2" hidden>
   <div class="stepHead" id="st2"><span class="eyebrow">Step 03 of 03</span><span class="stepTitle">Comments</span></div>
@@ -5710,7 +5749,7 @@ body{font-family:var(--font-sans)}</style><meta charSet="utf-8"/><meta name="vie
     <label class="fld c12" for="f-comentarios_formulario"><span class="lab">Is there anything else you would like to add or share with us?</span><textarea rows="4" id="f-comentarios_formulario" name="comentarios_formulario" data-obj="0-1"></textarea><span class="err" aria-live="polite"></span></label>
     <label class="fld check c12"><input type="checkbox" value="true" id="f-acepto_que_rols_carpets_pueda_almacenar_y_procesar_mis_datos_personales_de_acuerdo_a_la_politica_de" name="acepto_que_rols_carpets_pueda_almacenar_y_procesar_mis_datos_personales_de_acuerdo_a_la_politica_de" data-obj="0-1" required><span class="box" aria-hidden="true"></span><span class="ctext">I agree that Rols Carpets may store and process my personal data in accordance with the company's <a href="https://www.rolscarpets.com/en/privacy-policy/" target="_blank" rel="noopener">privacy policy</a>.<span class="req" aria-hidden="true">*</span></span><span class="err" aria-live="polite"></span></label>
   </div>
-  <div class="navRow"><button type="button" class="cta quiet" data-prev><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="15 6 9 12 15 18"></polyline></svg>Previous</button><button type="submit" class="cta">Submit<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="9 6 15 12 9 18"></polyline></svg></button></div>
+  <div class="navRow"><button type="button" class="cta quiet" data-prev><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="15 6 9 12 15 18"></polyline></svg>Previous</button><button type="submit" class="cta go">Submit<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="9 6 15 12 9 18"></polyline></svg></button></div>
 </div>
       <p class="formErr" role="alert" hidden></p>
     </form>
@@ -6724,26 +6763,28 @@ body{font-family:var(--font-sans)}</style><meta charSet="utf-8"/><meta name="vie
   var steps=[].slice.call(form.querySelectorAll('.step'));
   var marks=[].slice.call(document.querySelectorAll('.regSteps li'));
   var cur=0, reached=0;
-  var MSG={req:'Please complete this required field.',email:'Email must be formatted correctly.',check:'Please accept to continue.'};
+  var MSG={req:'Please complete this required field.',email:'Email must be formatted correctly.',check:'Please accept to continue.',pick:'Please choose a country from the list.',tel:'Please enter a valid phone number.'};
   function show(i,focus){
     steps.forEach(function(s,k){ s.hidden=k!==i; s.classList.toggle('on',k===i); });
     marks.forEach(function(m,k){ m.classList.toggle('on',k===i); m.classList.toggle('ok',k<i); m.querySelector('button').disabled=k>reached; });
     cur=i;
     if(focus){ var top=document.querySelector('.regPanel').getBoundingClientRect().top+window.scrollY-110;
       if(window.scrollY>top) window.scrollTo({top:top,behavior:'smooth'});
-      var f=steps[i].querySelector('input:not([type=hidden]),select,textarea'); if(f) f.focus({preventScroll:true}); }
+      var f=steps[i].querySelector('input:not([type=hidden]):not(.nochk),select,textarea'); if(f) f.focus({preventScroll:true}); }
   }
   function check(el){
     var box=el.closest('.fld'), err=box.querySelector('.err'), msg='';
     if(el.type==='checkbox'){ if(el.required && !el.checked) msg=MSG.check; }
+    else if(el.hasAttribute('data-combo')){ var h=box.querySelector('input[type=hidden]'); if(el.required && !h.value) msg=el.value.trim()?MSG.pick:MSG.req; }
     else { var v=el.value.trim();
       if(el.required && !v) msg=MSG.req;
+      else if(v && el.type==='tel' && !/^[0-9 ().\-]{4,20}$/.test(v)) msg=MSG.tel;
       else if(v && el.type==='email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) msg=MSG.email; }
     box.classList.toggle('bad',!!msg); err.textContent=msg; return !msg;
   }
   function valid(i){
     var ok=true, first=null;
-    steps[i].querySelectorAll('input:not([type=hidden]),select,textarea').forEach(function(el){
+    steps[i].querySelectorAll('input:not([type=hidden]):not(.nochk),select,textarea').forEach(function(el){
       if(!check(el)){ ok=false; if(!first) first=el; } });
     if(first) first.focus(); return ok;
   }
@@ -6761,7 +6802,9 @@ body{font-family:var(--font-sans)}</style><meta charSet="utf-8"/><meta name="vie
     var fields=[];
     form.querySelectorAll('[name][data-obj]').forEach(function(el){
       if(el.type==='checkbox'){ fields.push({objectTypeId:el.dataset.obj,name:el.name,value:el.checked?'true':'false'}); return; }
-      var v=el.value.trim(); if(v) fields.push({objectTypeId:el.dataset.obj,name:el.name,value:v});
+      var v=el.value.trim();
+      if(v && el.name==='phone'){ v='+'+form.querySelector('.dialBtn').dataset.dial+' '+v; }
+      if(v) fields.push({objectTypeId:el.dataset.obj,name:el.name,value:v});
     });
     var ctx={pageUri:location.href,pageName:document.title}, hutk=cookie('hubspotutk'); if(hutk) ctx.hutk=hutk;
     btn.setAttribute('aria-busy','true'); out.hidden=true;
@@ -6775,6 +6818,164 @@ body{font-family:var(--font-sans)}</style><meta charSet="utf-8"/><meta name="vie
       out.innerHTML='Something went wrong and the form could not be sent. Please try again or write to <a href="mailto:info@rolscarpets.com">info@rolscarpets.com</a>.';
       out.hidden=false;
     });
+  });
+})();
+</script><script>
+(function(){
+  // Google Maps API key (Places API New). Empty = the address field works as a normal text field.
+  var GMAPS_KEY = '';
+  var DATA = {"countries": [{"v": "Albania", "l": "Albania", "i": "al"}, {"v": "Argelia", "l": "Algeria", "i": "dz"}, {"v": "Andorra", "l": "Andorra", "i": "ad"}, {"v": "Argentina", "l": "Argentina", "i": "ar"}, {"v": "Armenia", "l": "Armenia", "i": "am"}, {"v": "Australia", "l": "Australia", "i": "au"}, {"v": "Austria", "l": "Austria", "i": "at"}, {"v": "Azerbaiyán", "l": "Azerbaijan", "i": "az"}, {"v": "Baréin", "l": "Bahrain", "i": "bh"}, {"v": "Barbados", "l": "Barbados", "i": "bb"}, {"v": "Bélgica", "l": "Belgium", "i": "be"}, {"v": "Brasil", "l": "Brazil", "i": "br"}, {"v": "Bulgaria", "l": "Bulgaria", "i": "bg"}, {"v": "Camboya", "l": "Cambodia", "i": "kh"}, {"v": "Camerún", "l": "Cameroon", "i": "cm"}, {"v": "Canada", "l": "Canada", "i": "ca"}, {"v": "Cabo Verde", "l": "Cape Verde", "i": "cv"}, {"v": "Chile", "l": "Chile", "i": "cl"}, {"v": "Colombia", "l": "Colombia", "i": "co"}, {"v": "Costa Rica", "l": "Costa Rica", "i": "cr"}, {"v": "Croacia", "l": "Croatia", "i": "hr"}, {"v": "Chipre", "l": "Cyprus", "i": "cy"}, {"v": "República Checa", "l": "Czech Republic", "i": "cz"}, {"v": "Dinamarca", "l": "Denmark", "i": "dk"}, {"v": "República Dominicana", "l": "Dominican Republic", "i": "do"}, {"v": "Ecuador", "l": "Ecuador", "i": "ec"}, {"v": "Egipto", "l": "Egypt", "i": "eg"}, {"v": "El Salvador", "l": "El Salvador", "i": "sv"}, {"v": "Estonia", "l": "Estonia", "i": "ee"}, {"v": "Finlandia", "l": "Finland", "i": "fi"}, {"v": "Francia", "l": "France", "i": "fr"}, {"v": "Polinesia Francesa", "l": "French Polynesia", "i": "pf"}, {"v": "Gabón", "l": "Gabon", "i": "ga"}, {"v": "Georgia", "l": "Georgia", "i": "ge"}, {"v": "Alemania", "l": "Germany", "i": "de"}, {"v": "Grecia", "l": "Greece", "i": "gr"}, {"v": "Guatemala", "l": "Guatemala", "i": "gt"}, {"v": "Hong Kong", "l": "Hong Kong", "i": "hk"}, {"v": "Hungría", "l": "Hungary", "i": "hu"}, {"v": "Islandia", "l": "Iceland", "i": "is"}, {"v": "India", "l": "India", "i": "in"}, {"v": "Indonesia", "l": "Indonesia", "i": "id"}, {"v": "Irán", "l": "Iran", "i": "ir"}, {"v": "Irlanda", "l": "Ireland", "i": "ie"}, {"v": "Israel", "l": "Israel", "i": "il"}, {"v": "Italia", "l": "Italy", "i": "it"}, {"v": "Costa de Marfil", "l": "Ivory Coast", "i": "ci"}, {"v": "Japón", "l": "Japan", "i": "jp"}, {"v": "Jordania", "l": "Jordan", "i": "jo"}, {"v": "Kazajistán", "l": "Kazakhstan", "i": "kz"}, {"v": "Kuwait", "l": "Kuwait", "i": "kw"}, {"v": "Letonia", "l": "Latvia", "i": "lv"}, {"v": "Líbano", "l": "Lebanon", "i": "lb"}, {"v": "Libia", "l": "Libya", "i": "ly"}, {"v": "Lituania", "l": "Lithuania", "i": "lt"}, {"v": "Luxemburgo", "l": "Luxembourg", "i": "lu"}, {"v": "Macedonia", "l": "Macedonia", "i": "mk"}, {"v": "Malasia", "l": "Malaysia", "i": "my"}, {"v": "Malta", "l": "Malta", "i": "mt"}, {"v": "Mauricio", "l": "Mauritius", "i": "mu"}, {"v": "México", "l": "Mexico", "i": "mx"}, {"v": "Moldavia", "l": "Moldova", "i": "md"}, {"v": "Mónaco", "l": "Monaco", "i": "mc"}, {"v": "Montenegro", "l": "Montenegro", "i": "me"}, {"v": "Marruecos", "l": "Morocco", "i": "ma"}, {"v": "Paises Bajos", "l": "Netherlands", "i": "nl"}, {"v": "Nueva Zelanda", "l": "New Zealand", "i": "nz"}, {"v": "Nicaragua", "l": "Nicaragua", "i": "ni"}, {"v": "Noruega", "l": "Norway", "i": "no"}, {"v": "Omán", "l": "Oman", "i": "om"}, {"v": "Panamá", "l": "Panama", "i": "pa"}, {"v": "Paraguay", "l": "Paraguay", "i": "py"}, {"v": "Perú", "l": "Peru", "i": "pe"}, {"v": "Filipinas", "l": "Philippines", "i": "ph"}, {"v": "Polonia", "l": "Poland", "i": "pl"}, {"v": "Portugal", "l": "Portugal", "i": "pt"}, {"v": "Puerto Rico", "l": "Puerto Rico", "i": "pr"}, {"v": "Qatar", "l": "Qatar", "i": "qa"}, {"v": "Rumanía", "l": "Romania", "i": "ro"}, {"v": "Rusia", "l": "Russia", "i": "ru"}, {"v": "Arabia Saudita", "l": "Saudi Arabia", "i": "sa"}, {"v": "Escocia", "l": "Scotland", "i": "gb-sct"}, {"v": "Serbia", "l": "Serbia", "i": "rs"}, {"v": "Sierra Leona", "l": "Sierra Leone", "i": "sl"}, {"v": "Singapur", "l": "Singapore", "i": "sg"}, {"v": "Eslovaquia", "l": "Slovakia", "i": "sk"}, {"v": "Eslovenia", "l": "Slovenia", "i": "si"}, {"v": "Sudáfrica", "l": "South Africa", "i": "za"}, {"v": "Corea del Sur", "l": "South Korea", "i": "kr"}, {"v": "España", "l": "Spain", "i": "es"}, {"v": "Suecia", "l": "Sweden", "i": "se"}, {"v": "Suiza", "l": "Switzerland", "i": "ch"}, {"v": "Taiwan", "l": "Taiwan", "i": "tw"}, {"v": "Tailandia", "l": "Thailand", "i": "th"}, {"v": "Túnez", "l": "Tunisia", "i": "tn"}, {"v": "Turquía", "l": "Turkey", "i": "tr"}, {"v": "Ucrania", "l": "Ukraine", "i": "ua"}, {"v": "Emiratos Árabes Unidos", "l": "United Arab Emirates", "i": "ae"}, {"v": "Reino Unido", "l": "United Kingdom", "i": "gb"}, {"v": "Estados Unidos", "l": "United States", "i": "us"}, {"v": "Uruguay", "l": "Uruguay", "i": "uy"}, {"v": "Uzbekistán", "l": "Uzbekistan", "i": "uz"}, {"v": "Vanuatu", "l": "Vanuatu", "i": "vu"}, {"v": "Venezuela", "l": "Venezuela", "i": "ve"}, {"v": "Vietnam", "l": "Vietnam", "i": "vn"}], "dial": [{"i": "af", "n": "Afghanistan", "d": "93"}, {"i": "ax", "n": "Åland Islands", "d": "358"}, {"i": "al", "n": "Albania", "d": "355"}, {"i": "dz", "n": "Algeria", "d": "213"}, {"i": "as", "n": "American Samoa", "d": "1"}, {"i": "ad", "n": "Andorra", "d": "376"}, {"i": "ao", "n": "Angola", "d": "244"}, {"i": "ai", "n": "Anguilla", "d": "1"}, {"i": "ag", "n": "Antigua and Barbuda", "d": "1"}, {"i": "ar", "n": "Argentina", "d": "54"}, {"i": "am", "n": "Armenia", "d": "374"}, {"i": "aw", "n": "Aruba", "d": "297"}, {"i": "au", "n": "Australia", "d": "61"}, {"i": "at", "n": "Austria", "d": "43"}, {"i": "az", "n": "Azerbaijan", "d": "994"}, {"i": "bs", "n": "Bahamas", "d": "1"}, {"i": "bh", "n": "Bahrain", "d": "973"}, {"i": "bd", "n": "Bangladesh", "d": "880"}, {"i": "bb", "n": "Barbados", "d": "1"}, {"i": "by", "n": "Belarus", "d": "375"}, {"i": "be", "n": "Belgium", "d": "32"}, {"i": "bz", "n": "Belize", "d": "501"}, {"i": "bj", "n": "Benin", "d": "229"}, {"i": "bm", "n": "Bermuda", "d": "1"}, {"i": "bt", "n": "Bhutan", "d": "975"}, {"i": "bo", "n": "Bolivia", "d": "591"}, {"i": "bq", "n": "Bonaire, Sint Eustatius and Saba", "d": "599"}, {"i": "ba", "n": "Bosnia and Herzegovina", "d": "387"}, {"i": "bw", "n": "Botswana", "d": "267"}, {"i": "br", "n": "Brazil", "d": "55"}, {"i": "io", "n": "British Indian Ocean Territory", "d": "246"}, {"i": "vg", "n": "British Virgin Islands", "d": "1"}, {"i": "bn", "n": "Brunei", "d": "673"}, {"i": "bg", "n": "Bulgaria", "d": "359"}, {"i": "bf", "n": "Burkina Faso", "d": "226"}, {"i": "bi", "n": "Burundi", "d": "257"}, {"i": "kh", "n": "Cambodia", "d": "855"}, {"i": "cm", "n": "Cameroon", "d": "237"}, {"i": "ca", "n": "Canada", "d": "1"}, {"i": "cv", "n": "Cape Verde", "d": "238"}, {"i": "ky", "n": "Cayman Islands", "d": "1"}, {"i": "cf", "n": "Central African Republic", "d": "236"}, {"i": "td", "n": "Chad", "d": "235"}, {"i": "cl", "n": "Chile", "d": "56"}, {"i": "cn", "n": "China", "d": "86"}, {"i": "cx", "n": "Christmas Island", "d": "61"}, {"i": "cc", "n": "Cocos Islands", "d": "61"}, {"i": "co", "n": "Colombia", "d": "57"}, {"i": "km", "n": "Comoros", "d": "269"}, {"i": "cg", "n": "Congo", "d": "242"}, {"i": "ck", "n": "Cook Islands", "d": "682"}, {"i": "cr", "n": "Costa Rica", "d": "506"}, {"i": "ci", "n": "Côte d'Ivoire", "d": "225"}, {"i": "hr", "n": "Croatia", "d": "385"}, {"i": "cu", "n": "Cuba", "d": "53"}, {"i": "cw", "n": "Curaçao", "d": "599"}, {"i": "cy", "n": "Cyprus", "d": "357"}, {"i": "cz", "n": "Czech Republic", "d": "420"}, {"i": "dk", "n": "Denmark", "d": "45"}, {"i": "dj", "n": "Djibouti", "d": "253"}, {"i": "dm", "n": "Dominica", "d": "1"}, {"i": "do", "n": "Dominican Republic", "d": "1"}, {"i": "ec", "n": "Ecuador", "d": "593"}, {"i": "eg", "n": "Egypt", "d": "20"}, {"i": "sv", "n": "El Salvador", "d": "503"}, {"i": "gq", "n": "Equatorial Guinea", "d": "240"}, {"i": "er", "n": "Eritrea", "d": "291"}, {"i": "ee", "n": "Estonia", "d": "372"}, {"i": "et", "n": "Ethiopia", "d": "251"}, {"i": "fk", "n": "Falkland Islands", "d": "500"}, {"i": "fo", "n": "Faroe Islands", "d": "298"}, {"i": "fj", "n": "Fiji", "d": "679"}, {"i": "fi", "n": "Finland", "d": "358"}, {"i": "fr", "n": "France", "d": "33"}, {"i": "gf", "n": "French Guiana", "d": "594"}, {"i": "pf", "n": "French Polynesia", "d": "689"}, {"i": "ga", "n": "Gabon", "d": "241"}, {"i": "gm", "n": "Gambia", "d": "220"}, {"i": "ge", "n": "Georgia", "d": "995"}, {"i": "de", "n": "Germany", "d": "49"}, {"i": "gh", "n": "Ghana", "d": "233"}, {"i": "gi", "n": "Gibraltar", "d": "350"}, {"i": "gr", "n": "Greece", "d": "30"}, {"i": "gl", "n": "Greenland", "d": "299"}, {"i": "gd", "n": "Grenada", "d": "1"}, {"i": "gp", "n": "Guadeloupe", "d": "590"}, {"i": "gu", "n": "Guam", "d": "1"}, {"i": "gt", "n": "Guatemala", "d": "502"}, {"i": "gg", "n": "Guernsey", "d": "44"}, {"i": "gn", "n": "Guinea", "d": "224"}, {"i": "gw", "n": "Guinea-Bissau", "d": "245"}, {"i": "gy", "n": "Guyana", "d": "592"}, {"i": "ht", "n": "Haiti", "d": "509"}, {"i": "hn", "n": "Honduras", "d": "504"}, {"i": "hk", "n": "Hong Kong", "d": "852"}, {"i": "hu", "n": "Hungary", "d": "36"}, {"i": "is", "n": "Iceland", "d": "354"}, {"i": "in", "n": "India", "d": "91"}, {"i": "id", "n": "Indonesia", "d": "62"}, {"i": "ir", "n": "Iran", "d": "98"}, {"i": "iq", "n": "Iraq", "d": "964"}, {"i": "ie", "n": "Ireland", "d": "353"}, {"i": "im", "n": "Isle Of Man", "d": "44"}, {"i": "il", "n": "Israel", "d": "972"}, {"i": "it", "n": "Italy", "d": "39"}, {"i": "jm", "n": "Jamaica", "d": "1"}, {"i": "jp", "n": "Japan", "d": "81"}, {"i": "je", "n": "Jersey", "d": "44"}, {"i": "jo", "n": "Jordan", "d": "962"}, {"i": "kz", "n": "Kazakhstan", "d": "7"}, {"i": "ke", "n": "Kenya", "d": "254"}, {"i": "ki", "n": "Kiribati", "d": "686"}, {"i": "xk", "n": "Kosovo", "d": "383"}, {"i": "kw", "n": "Kuwait", "d": "965"}, {"i": "kg", "n": "Kyrgyzstan", "d": "996"}, {"i": "la", "n": "Laos", "d": "856"}, {"i": "lv", "n": "Latvia", "d": "371"}, {"i": "lb", "n": "Lebanon", "d": "961"}, {"i": "ls", "n": "Lesotho", "d": "266"}, {"i": "lr", "n": "Liberia", "d": "231"}, {"i": "ly", "n": "Libya", "d": "218"}, {"i": "li", "n": "Liechtenstein", "d": "423"}, {"i": "lt", "n": "Lithuania", "d": "370"}, {"i": "lu", "n": "Luxembourg", "d": "352"}, {"i": "mo", "n": "Macao", "d": "853"}, {"i": "mk", "n": "Macedonia", "d": "389"}, {"i": "mg", "n": "Madagascar", "d": "261"}, {"i": "mw", "n": "Malawi", "d": "265"}, {"i": "my", "n": "Malaysia", "d": "60"}, {"i": "mv", "n": "Maldives", "d": "960"}, {"i": "ml", "n": "Mali", "d": "223"}, {"i": "mt", "n": "Malta", "d": "356"}, {"i": "mh", "n": "Marshall Islands", "d": "692"}, {"i": "mq", "n": "Martinique", "d": "596"}, {"i": "mr", "n": "Mauritania", "d": "222"}, {"i": "mu", "n": "Mauritius", "d": "230"}, {"i": "yt", "n": "Mayotte", "d": "262"}, {"i": "mx", "n": "Mexico", "d": "52"}, {"i": "fm", "n": "Micronesia", "d": "691"}, {"i": "md", "n": "Moldova", "d": "373"}, {"i": "mc", "n": "Monaco", "d": "377"}, {"i": "mn", "n": "Mongolia", "d": "976"}, {"i": "me", "n": "Montenegro", "d": "382"}, {"i": "ms", "n": "Montserrat", "d": "1"}, {"i": "ma", "n": "Morocco", "d": "212"}, {"i": "mz", "n": "Mozambique", "d": "258"}, {"i": "mm", "n": "Myanmar", "d": "95"}, {"i": "na", "n": "Namibia", "d": "264"}, {"i": "nr", "n": "Nauru", "d": "674"}, {"i": "np", "n": "Nepal", "d": "977"}, {"i": "nl", "n": "Netherlands", "d": "31"}, {"i": "nc", "n": "New Caledonia", "d": "687"}, {"i": "nz", "n": "New Zealand", "d": "64"}, {"i": "ni", "n": "Nicaragua", "d": "505"}, {"i": "ne", "n": "Niger", "d": "227"}, {"i": "ng", "n": "Nigeria", "d": "234"}, {"i": "nu", "n": "Niue", "d": "683"}, {"i": "nf", "n": "Norfolk Island", "d": "672"}, {"i": "kp", "n": "North Korea", "d": "850"}, {"i": "mp", "n": "Northern Mariana Islands", "d": "1"}, {"i": "no", "n": "Norway", "d": "47"}, {"i": "om", "n": "Oman", "d": "968"}, {"i": "pk", "n": "Pakistan", "d": "92"}, {"i": "pw", "n": "Palau", "d": "680"}, {"i": "ps", "n": "Palestine", "d": "970"}, {"i": "pa", "n": "Panama", "d": "507"}, {"i": "pg", "n": "Papua New Guinea", "d": "675"}, {"i": "py", "n": "Paraguay", "d": "595"}, {"i": "pe", "n": "Peru", "d": "51"}, {"i": "ph", "n": "Philippines", "d": "63"}, {"i": "pl", "n": "Poland", "d": "48"}, {"i": "pt", "n": "Portugal", "d": "351"}, {"i": "pr", "n": "Puerto Rico", "d": "1"}, {"i": "qa", "n": "Qatar", "d": "974"}, {"i": "re", "n": "Reunion", "d": "262"}, {"i": "ro", "n": "Romania", "d": "40"}, {"i": "ru", "n": "Russia", "d": "7"}, {"i": "rw", "n": "Rwanda", "d": "250"}, {"i": "bl", "n": "Saint Barthélemy", "d": "590"}, {"i": "sh", "n": "Saint Helena", "d": "290"}, {"i": "kn", "n": "Saint Kitts And Nevis", "d": "1"}, {"i": "lc", "n": "Saint Lucia", "d": "1"}, {"i": "mf", "n": "Saint Martin", "d": "590"}, {"i": "pm", "n": "Saint Pierre And Miquelon", "d": "508"}, {"i": "vc", "n": "Saint Vincent And The Grenadines", "d": "1"}, {"i": "ws", "n": "Samoa", "d": "685"}, {"i": "sm", "n": "San Marino", "d": "378"}, {"i": "st", "n": "Sao Tome And Principe", "d": "239"}, {"i": "sa", "n": "Saudi Arabia", "d": "966"}, {"i": "sn", "n": "Senegal", "d": "221"}, {"i": "rs", "n": "Serbia", "d": "381"}, {"i": "sc", "n": "Seychelles", "d": "248"}, {"i": "sl", "n": "Sierra Leone", "d": "232"}, {"i": "sg", "n": "Singapore", "d": "65"}, {"i": "sx", "n": "Sint Maarten (Dutch part)", "d": "1"}, {"i": "sk", "n": "Slovakia", "d": "421"}, {"i": "si", "n": "Slovenia", "d": "386"}, {"i": "sb", "n": "Solomon Islands", "d": "677"}, {"i": "so", "n": "Somalia", "d": "252"}, {"i": "za", "n": "South Africa", "d": "27"}, {"i": "kr", "n": "South Korea", "d": "82"}, {"i": "ss", "n": "South Sudan", "d": "211"}, {"i": "es", "n": "Spain", "d": "34"}, {"i": "lk", "n": "Sri Lanka", "d": "94"}, {"i": "sd", "n": "Sudan", "d": "249"}, {"i": "sr", "n": "Suriname", "d": "597"}, {"i": "sj", "n": "Svalbard And Jan Mayen", "d": "47"}, {"i": "sz", "n": "Swaziland", "d": "268"}, {"i": "se", "n": "Sweden", "d": "46"}, {"i": "ch", "n": "Switzerland", "d": "41"}, {"i": "sy", "n": "Syria", "d": "963"}, {"i": "tw", "n": "Taiwan", "d": "886"}, {"i": "tj", "n": "Tajikistan", "d": "992"}, {"i": "tz", "n": "Tanzania", "d": "255"}, {"i": "th", "n": "Thailand", "d": "66"}, {"i": "cd", "n": "The Democratic Republic Of Congo", "d": "243"}, {"i": "tl", "n": "Timor-Leste", "d": "670"}, {"i": "tg", "n": "Togo", "d": "228"}, {"i": "tk", "n": "Tokelau", "d": "690"}, {"i": "to", "n": "Tonga", "d": "676"}, {"i": "tt", "n": "Trinidad and Tobago", "d": "1"}, {"i": "tn", "n": "Tunisia", "d": "216"}, {"i": "tr", "n": "Turkey", "d": "90"}, {"i": "tm", "n": "Turkmenistan", "d": "993"}, {"i": "tc", "n": "Turks And Caicos Islands", "d": "1"}, {"i": "tv", "n": "Tuvalu", "d": "688"}, {"i": "vi", "n": "U.S. Virgin Islands", "d": "1"}, {"i": "ug", "n": "Uganda", "d": "256"}, {"i": "ua", "n": "Ukraine", "d": "380"}, {"i": "ae", "n": "United Arab Emirates", "d": "971"}, {"i": "gb", "n": "United Kingdom", "d": "44"}, {"i": "us", "n": "United States", "d": "1"}, {"i": "uy", "n": "Uruguay", "d": "598"}, {"i": "uz", "n": "Uzbekistan", "d": "998"}, {"i": "vu", "n": "Vanuatu", "d": "678"}, {"i": "va", "n": "Vatican", "d": "39"}, {"i": "ve", "n": "Venezuela", "d": "58"}, {"i": "vn", "n": "Vietnam", "d": "84"}, {"i": "wf", "n": "Wallis And Futuna", "d": "681"}, {"i": "eh", "n": "Western Sahara", "d": "212"}, {"i": "ye", "n": "Yemen", "d": "967"}, {"i": "zm", "n": "Zambia", "d": "260"}, {"i": "zw", "n": "Zimbabwe", "d": "263"}]};
+  var FLAG = function(i){ return 'https://flagcdn.com/' + i + '.svg'; };
+  function norm(s){ return (s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim(); }
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  function fire(el){ el.dispatchEvent(new Event('input',{bubbles:true})); }
+
+  // generic listbox with keyboard support
+  function listbox(input, list, opts){
+    var items=[], act=-1;
+    function render(arr){
+      items=arr; act=arr.length?0:-1;
+      list.innerHTML = arr.length ? arr.map(function(it,k){ return '<li role="option" id="'+list.id+'-'+k+'" data-k="'+k+'"'+(k===0?' class="act"':'')+'>'+opts.html(it)+'</li>'; }).join('') + (opts.foot||'')
+                                  : '<li class="empty">'+(opts.empty||'No results')+'</li>';
+      input.setAttribute('aria-activedescendant', act>=0 ? list.id+'-0' : '');
+    }
+    function move(d){ if(!items.length) return; var lis=list.querySelectorAll('li[data-k]'); if(lis[act]) lis[act].classList.remove('act');
+      act=(act+d+items.length)%items.length; lis[act].classList.add('act'); lis[act].scrollIntoView({block:'nearest'}); input.setAttribute('aria-activedescendant', lis[act].id); }
+    function open(){ if(opts.box) opts.box.hidden=false; else list.hidden=false; input.setAttribute('aria-expanded','true'); }
+    function close(){ if(opts.box) opts.box.hidden=true; else list.hidden=true; input.setAttribute('aria-expanded','false'); }
+    input.addEventListener('keydown',function(e){
+      var shown = opts.box ? !opts.box.hidden : !list.hidden;
+      if(e.key==='ArrowDown'){ e.preventDefault(); if(!shown){ opts.onOpen && opts.onOpen(); } else move(1); }
+      else if(e.key==='ArrowUp'){ e.preventDefault(); if(shown) move(-1); }
+      else if(e.key==='Enter'){ if(shown && act>=0){ e.preventDefault(); opts.pick(items[act]); } }
+      else if(e.key==='Escape'){ if(shown){ e.preventDefault(); close(); opts.onClose && opts.onClose(); } }
+    });
+    list.addEventListener('mousedown',function(e){ var li=e.target.closest('li[data-k]'); if(!li) return; e.preventDefault(); opts.pick(items[+li.dataset.k]); });
+    return {render:render, open:open, close:close};
+  }
+
+  // ---------- country ----------
+  var cfld=document.querySelector('[data-country]');
+  var setCountryByIso=function(){};
+  if(cfld){
+    var cin=cfld.querySelector('.comboInput'), clist=cfld.querySelector('.comboList'), chid=cfld.querySelector('input[type=hidden]'),
+        cbox=cfld.querySelector('.comboBox'), cflag=cbox.querySelector('.flag');
+    var C=DATA.countries;
+    function setC(it){
+      chid.value = it ? it.v : '';
+      if(it){ cin.value=it.l; cflag.src=FLAG(it.i); cflag.hidden=false; cbox.classList.add('has-flag'); }
+      else { cflag.hidden=true; cbox.classList.remove('has-flag'); }
+      cfld.dataset.iso = it ? it.i : '';
+      document.dispatchEvent(new CustomEvent('reg:country',{detail:it}));
+    }
+    var lb=listbox(cin, clist, {
+      html:function(it){ return '<img src="'+FLAG(it.i)+'" alt="" loading="lazy">'+esc(it.l); },
+      empty:'No country found',
+      pick:function(it){ setC(it); lb.close(); fire(cin); },
+      onOpen:function(){ filter(); lb.open(); }
+    });
+    function filter(){
+      var q=norm(cin.value), sel=chid.value && cin.value===(C.find(function(c){return c.v===chid.value;})||{}).l;
+      if(!q || sel){ lb.render(C); return; }
+      var a=[], b=[];
+      C.forEach(function(c){ var n=norm(c.l); if(n.indexOf(q)===0) a.push(c); else if(n.indexOf(q)>0 || norm(c.v).indexOf(q)===0) b.push(c); });
+      lb.render(a.concat(b));
+    }
+    cin.addEventListener('focus',function(){ filter(); lb.open(); });
+    cin.addEventListener('click',function(){ filter(); lb.open(); });
+    cin.addEventListener('input',function(e){ if(!e.isTrusted) return; if(chid.value) setC(null); filter(); lb.open(); });
+    cin.addEventListener('blur',function(){
+      setTimeout(function(){ lb.close();
+        if(!chid.value){ var q=norm(cin.value); var m=C.find(function(c){ return norm(c.l)===q || norm(c.v)===q; }); if(m){ setC(m); fire(cin); } }
+      },120);
+    });
+    setCountryByIso=function(iso){ var m=C.find(function(c){ return c.i===iso; }); if(m && !chid.value){ setC(m); fire(cin); } };
+  }
+
+  // ---------- phone prefix ----------
+  var pfld=document.querySelector('.fld.phone');
+  if(pfld){
+    var btn=pfld.querySelector('.dialBtn'), pop=pfld.querySelector('.dialPop'), ds=pfld.querySelector('.dialSearch'), dl=pfld.querySelector('.comboList'), tel=pfld.querySelector('input[type=tel]');
+    var DL=DATA.dial, touched=false;
+    function setDial(it){ btn.dataset.dial=it.d; btn.dataset.iso=it.i; btn.querySelector('.flag').src=FLAG(it.i); btn.querySelector('.dialCode').textContent='+'+it.d; }
+    var plb=listbox(ds, dl, {
+      box:pop,
+      html:function(it){ return '<img src="'+FLAG(it.i)+'" alt="" loading="lazy"><span>'+esc(it.n)+'</span><span class="dc">+'+it.d+'</span>'; },
+      empty:'No country found',
+      pick:function(it){ touched=true; setDial(it); plb.close(); tel.focus(); },
+      onClose:function(){ btn.focus(); }
+    });
+    function pfilter(){
+      var q=norm(ds.value).replace(/^\+/,'');
+      if(!q){ plb.render(DL); return; }
+      var a=[], b=[];
+      DL.forEach(function(c){ var n=norm(c.n); if(n.indexOf(q)===0 || c.d.indexOf(q)===0) a.push(c); else if(n.indexOf(q)>0) b.push(c); });
+      plb.render(a.concat(b));
+    }
+    btn.addEventListener('click',function(){ if(!pop.hidden){ plb.close(); return; } ds.value=''; pfilter(); plb.open(); ds.focus();
+      var cur=dl.querySelector('li[data-k]'); });
+    ds.addEventListener('input',pfilter);
+    ds.addEventListener('blur',function(){ setTimeout(function(){ if(!pfld.contains(document.activeElement) || document.activeElement===tel) plb.close(); },150); });
+    document.addEventListener('mousedown',function(e){ if(!pop.hidden && !pfld.contains(e.target)) plb.close(); });
+    // follow the country chosen in step 1 until the user picks a prefix
+    document.addEventListener('reg:country',function(e){ if(touched || !e.detail) return;
+      var iso=e.detail.i==='gb-sct'?'gb':e.detail.i; var m=DL.find(function(c){ return c.i===iso; }); if(m) setDial(m); });
+  }
+
+  // ---------- address autocomplete (Google Places API New) ----------
+  var places=null;
+  function loadPlaces(){
+    if(!GMAPS_KEY) return Promise.reject('no key');
+    if(places) return places;
+    places=new Promise(function(res,rej){
+      window.__rolsPlaces=function(){ google.maps.importLibrary('places').then(res,rej); };
+      var s=document.createElement('script');
+      s.src='https://maps.googleapis.com/maps/api/js?key='+encodeURIComponent(GMAPS_KEY)+'&loading=async&v=weekly&language=en&callback=__rolsPlaces';
+      s.async=true; s.onerror=rej; document.head.appendChild(s);
+    });
+    return places;
+  }
+  var NUM_FIRST=['us','gb','ca','au','nz','ie','fr','za','in','sg','il','ph','my','lu','be'];
+  function comp(cs,type,short){ var c=cs.find(function(x){ return x.types.indexOf(type)>=0; }); return c ? (short?c.shortText:c.longText) : ''; }
+  [].forEach.call(document.querySelectorAll('[data-addr]'),function(fld){
+    var inp=fld.querySelector('input'), list=fld.querySelector('.comboList'), kind=fld.dataset.addr;
+    var lib=null, token=null, seq=0, timer=null;
+    var alb=listbox(inp, list, {
+      html:function(s){ var p=s.placePrediction; return '<span>'+esc(p.mainText?p.mainText.toString():p.text.toString())+(p.secondaryText?'<span class="sub">'+esc(p.secondaryText.toString())+'</span>':'')+'</span>'; },
+      foot:'<li class="gfoot" aria-hidden="true">powered by Google</li>',
+      empty:'No addresses found',
+      pick:function(s){ alb.close(); fill(s); }
+    });
+    function fill(s){
+      var place=s.placePrediction.toPlace();
+      place.fetchFields({fields:['addressComponents']}).then(function(){
+        var cs=place.addressComponents||[], iso=comp(cs,'country',true).toLowerCase();
+        var route=comp(cs,'route'), num=comp(cs,'street_number'), sub=comp(cs,'subpremise');
+        var line = route ? (NUM_FIRST.indexOf(iso)>=0 ? [num,route].filter(Boolean).join(' ') : [route,num].filter(Boolean).join(', ')) : s.placePrediction.mainText.toString();
+        if(sub) line += ', ' + sub;
+        inp.value=line; fire(inp);
+        var zip=comp(cs,'postal_code'), city=comp(cs,'locality')||comp(cs,'postal_town')||comp(cs,'administrative_area_level_2');
+        var set=function(n,v){ var el=document.querySelector('[name="'+n+'"]'); if(el && v){ el.value=v; fire(el); } };
+        if(kind==='billing'){ set('zip',zip); set('billing_city',city); if(iso) setCountryByIso(iso==='gb' && /scotland/i.test(comp(cs,'administrative_area_level_1'))?'gb-sct':iso); }
+        else { set('shipping_postal_code',zip); set('shipping_city',city); }
+        token=null;
+      });
+    }
+    function query(){
+      var q=inp.value.trim(); if(q.length<3){ alb.close(); return; }
+      var my=++seq;
+      loadPlaces().then(function(l){
+        lib=l; if(!token) token=new lib.AutocompleteSessionToken();
+        var req={input:q, sessionToken:token, language:'en'};
+        var cf=document.querySelector('[data-country]'); var iso=cf && cf.dataset.iso;
+        if(kind==='billing' && iso && iso.length===2) req.includedRegionCodes=[iso];
+        return lib.AutocompleteSuggestion.fetchAutocompleteSuggestions(req);
+      }).then(function(r){ if(my!==seq) return; var sg=(r.suggestions||[]).filter(function(s){ return s.placePrediction; });
+        alb.render(sg); if(sg.length) alb.open(); else alb.close();
+      }).catch(function(){});
+    }
+    inp.addEventListener('input',function(e){ if(!e.isTrusted) return; clearTimeout(timer); timer=setTimeout(query,220); });
+    inp.addEventListener('blur',function(){ setTimeout(function(){ alb.close(); },120); });
   });
 })();
 </script>
