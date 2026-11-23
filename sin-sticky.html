@@ -6775,7 +6775,7 @@ body{font-family:var(--font-sans)}</style><meta charSet="utf-8"/><meta name="vie
   var form=document.getElementById('regForm'); if(!form) return;
   var steps=[].slice.call(form.querySelectorAll('.step'));
   var marks=[].slice.call(document.querySelectorAll('.regSteps li'));
-  var cur=0, reached=2;
+  var cur=0, reached=0;
   var MSG={req:'Please complete this required field.',email:'Email must be formatted correctly.',check:'Please accept to continue.',pick:'Please choose a country from the list.',tel:'Please enter a valid phone number.'};
   function show(i,focus){
     steps.forEach(function(s,k){ s.hidden=k!==i; s.classList.toggle('on',k===i); });
@@ -6805,10 +6805,10 @@ body{font-family:var(--font-sans)}</style><meta charSet="utf-8"/><meta name="vie
   form.addEventListener('input',function(e){ if(e.target.closest('.fld.bad')) check(e.target); });
   form.addEventListener('change',function(e){ if(e.target.closest('.fld.bad')) check(e.target); });
   form.addEventListener('click',function(e){
-    if(e.target.closest('[data-next]')){ show(cur+1,true); }
+    if(e.target.closest('[data-next]')){ if(valid(cur)){ reached=Math.max(reached,cur+1); show(cur+1,true); } }
     if(e.target.closest('[data-prev]')) show(cur-1,true);
   });
-  marks.forEach(function(m,k){ m.querySelector('button').addEventListener('click',function(){ show(k,true); }); });
+  marks.forEach(function(m,k){ m.querySelector('button').addEventListener('click',function(){ if(k<=reached && (k<cur || valid(cur))) show(k,true); }); });
   function cookie(n){ var m=document.cookie.match('(?:^|; )'+n+'=([^;]*)'); return m?decodeURIComponent(m[1]):null; }
   form.addEventListener('submit',function(e){
     e.preventDefault();
