@@ -93,8 +93,16 @@
 .comboBox .chev,.dialBtn .chev{width:7px;height:7px;border-right:1.2px solid currentColor;border-bottom:1.2px solid currentColor;transform:rotate(45deg);pointer-events:none}
 .comboBox .chev{position:absolute;right:2px;top:50%;margin-top:-6px}
 .fld input::placeholder{color:color-mix(in srgb,var(--foreground) 35%,transparent);font-weight:300}
-.addrBox .lupa{position:absolute;left:0;top:50%;width:16px;height:16px;transform:translateY(-50%);color:color-mix(in srgb,var(--foreground) 55%,transparent);pointer-events:none}
-.fld .addrBox input{padding-left:26px}
+.addrBox .lupa{display:none}
+.addr.live .addrBox .lupa{display:block;position:absolute;left:0;top:50%;width:16px;height:16px;transform:translateY(-50%);color:color-mix(in srgb,var(--foreground) 55%,transparent);pointer-events:none}
+.addr.live .addrBox input{padding-left:26px}
+.pickBtn{all:unset;box-sizing:border-box;width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 2px 7px 0;border-bottom:1px solid color-mix(in srgb,var(--foreground) 30%,transparent);font:300 14px/1.4 var(--font-montserrat);color:var(--foreground);cursor:pointer;transition:border-color .25s}
+.pickBtn:focus-visible{outline:none;border-bottom-color:var(--foreground)}
+.pickBtn .chev{width:7px;height:7px;border-right:1.2px solid currentColor;border-bottom:1.2px solid currentColor;transform:rotate(45deg);margin-top:-5px;transition:transform .25s}
+.pick.open .pickBtn .chev{transform:rotate(-135deg);margin-top:3px}
+.pick:not(.has) .pickVal{color:color-mix(in srgb,var(--foreground) 35%,transparent)}
+.fld.bad .pickBtn{border-bottom-color:var(--accent-deep)}
+.comboList li[aria-selected=true]::after{content:"";margin-left:auto;width:5px;height:9px;border-right:1.3px solid currentColor;border-bottom:1.3px solid currentColor;transform:translateY(-2px) rotate(45deg)}
 .phoneBox{display:flex;align-items:stretch;gap:14px}
 .dialBtn{all:unset;box-sizing:border-box;flex:none;display:flex;align-items:center;gap:8px;padding:8px 2px 7px 0;border-bottom:1px solid color-mix(in srgb,var(--foreground) 30%,transparent);cursor:pointer;font:300 14px/1.4 var(--font-montserrat);color:var(--foreground)}
 .dialBtn:focus-visible{outline:2px solid var(--foreground);outline-offset:3px}
@@ -5718,8 +5726,8 @@ body{font-family:var(--font-sans)}</style><meta charSet="utf-8"/><meta name="vie
     <label class="fld c6" for="f-cif_empresa"><span class="lab">Company Tax ID<span class="req" aria-hidden="true">*</span></span><input type="text" id="f-cif_empresa" name="cif_empresa" data-obj="0-1" required><span class="err" aria-live="polite"></span></label>
     <label class="fld c6" for="f-company"><span class="lab">Legal company name<span class="req" aria-hidden="true">*</span></span><input type="text" id="f-company" name="company" data-obj="0-1" required autocomplete="organization"><span class="err" aria-live="polite"></span></label>
     <label class="fld c6" for="f-name"><span class="lab">Trade name</span><input type="text" id="f-name" name="name" data-obj="0-2"><span class="err" aria-live="polite"></span></label>
-    <label class="fld c6" for="f-sector_para_formulario_hubspot"><span class="lab">Professional sector<span class="req" aria-hidden="true">*</span></span><span class="sel"><select id="f-sector_para_formulario_hubspot" name="sector_para_formulario_hubspot" data-obj="0-1" required><option value="" selected disabled hidden></option><option value="Arquitecto">Architect</option><option value="Interiorista">Interior Designer</option><option value="Hotel">Hotel</option><option value="Distribuidor">Dealer</option><option value="Tienda">Retailer</option><option value="Otro">Other</option></select></span><span class="err" aria-live="polite"></span></label>
-    <div class="fld addr c6" data-addr="billing"><label class="lab" for="f-billing_address_line_1">Billing Address<span class="req" aria-hidden="true">*</span></label><div class="addrBox"><svg class="lupa" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5"></path></svg><input type="text" id="f-billing_address_line_1" name="billing_address_line_1" data-obj="0-1" role="combobox" aria-autocomplete="list" aria-controls="lb-billing_address_line_1" autocomplete="off" placeholder="Start typing your address" required></div><ul class="comboList" id="lb-billing_address_line_1" role="listbox" hidden></ul><span class="err" aria-live="polite"></span></div>
+    <div class="fld pick c6" data-pick><span class="lab" id="lab-sector_para_formulario_hubspot">Professional sector<span class="req" aria-hidden="true">*</span></span><button type="button" class="pickBtn" id="f-sector_para_formulario_hubspot" aria-haspopup="listbox" aria-labelledby="lab-sector_para_formulario_hubspot f-sector_para_formulario_hubspot" data-required><span class="pickVal">Select</span><span class="chev" aria-hidden="true"></span></button><ul class="comboList" id="lb-sector_para_formulario_hubspot" role="listbox" tabindex="-1" hidden><li role="option" data-v="Arquitecto">Architect</li><li role="option" data-v="Interiorista">Interior Designer</li><li role="option" data-v="Hotel">Hotel</li><li role="option" data-v="Distribuidor">Dealer</li><li role="option" data-v="Tienda">Retailer</li><li role="option" data-v="Otro">Other</li></ul><input type="hidden" name="sector_para_formulario_hubspot" data-obj="0-1"><span class="err" aria-live="polite"></span></div>
+    <div class="fld addr c6" data-addr="billing"><label class="lab" for="f-billing_address_line_1">Billing Address<span class="req" aria-hidden="true">*</span></label><div class="addrBox"><svg class="lupa" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5"></path></svg><input type="text" id="f-billing_address_line_1" name="billing_address_line_1" data-obj="0-1" aria-controls="lb-billing_address_line_1" autocomplete="street-address" required></div><ul class="comboList" id="lb-billing_address_line_1" role="listbox" hidden></ul><span class="err" aria-live="polite"></span></div>
     <label class="fld c3" for="f-zip"><span class="lab">ZIP code<span class="req" aria-hidden="true">*</span></span><input type="text" id="f-zip" name="zip" data-obj="0-1" required autocomplete="postal-code"><span class="err" aria-live="polite"></span></label>
     <label class="fld c3" for="f-billing_city"><span class="lab">Billing city<span class="req" aria-hidden="true">*</span></span><input type="text" id="f-billing_city" name="billing_city" data-obj="0-1" required><span class="err" aria-live="polite"></span></label>
     <div class="fld combo c6" data-country><label class="lab" for="f-pais">Country<span class="req" aria-hidden="true">*</span></label><div class="comboBox"><img class="flag" alt="" hidden><input type="text" id="f-pais" class="comboInput" role="combobox" aria-autocomplete="list" aria-controls="lb-pais" autocomplete="off" spellcheck="false" placeholder="Type to search" data-combo required><span class="chev" aria-hidden="true"></span></div><ul class="comboList" id="lb-pais" role="listbox" hidden></ul><input type="hidden" name="pais" data-obj="0-1"><span class="err" aria-live="polite"></span></div>
@@ -5728,7 +5736,7 @@ body{font-family:var(--font-sans)}</style><meta charSet="utf-8"/><meta name="vie
     <label class="fld c6" for="f-como_nos_ha_conocido_"><span class="lab">How did you hear about us?<span class="req" aria-hidden="true">*</span></span><input type="text" id="f-como_nos_ha_conocido_" name="como_nos_ha_conocido_" data-obj="0-1" required><span class="err" aria-live="polite"></span></label>
     <input type="hidden" name="hs_lead_status" data-obj="0-1" value="En proceso - Ha rellenado ficha alta cliente">
   </div>
-  <div class="navRow"><span></span><button type="button" class="cta go" data-next>Next<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="9 6 15 12 9 18"></polyline></svg></button></div>
+  <div class="navRow"><span></span><button type="button" class="cta" data-next>Next<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="9 6 15 12 9 18"></polyline></svg></button></div>
 </div>
 <div role="group" aria-labelledby="st1" class="step" data-step="1" hidden>
   <div class="stepHead" id="st1"><span class="eyebrow">Step 02 of 03</span><span class="stepTitle">Shipping Information</span></div>
@@ -5737,11 +5745,11 @@ body{font-family:var(--font-sans)}</style><meta charSet="utf-8"/><meta name="vie
     <label class="fld c6" for="f-correo_electrnico"><span class="lab">E-mail for Shipping<span class="req" aria-hidden="true">*</span></span><input type="email" id="f-correo_electrnico" name="correo_electrnico" data-obj="0-1" required><span class="err" aria-live="polite"></span></label>
     <div class="fld phone c6"><label class="lab" for="f-phone">Phone Number for Shipping<span class="req" aria-hidden="true">*</span></label><div class="phoneBox"><button type="button" class="dialBtn" data-dial="34" data-iso="es" title="Country code"><img class="flag" src="https://flagcdn.com/es.svg" alt=""><span class="dialCode">+34</span><span class="chev" aria-hidden="true"></span></button><input type="tel" id="f-phone" name="phone" data-obj="0-1" autocomplete="tel-national" inputmode="tel" required></div><div class="dialPop" hidden><div class="dialSearchBox"><svg class="lupa" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5"></path></svg><input type="text" class="dialSearch nochk" role="combobox" aria-autocomplete="list" aria-controls="lb-dial" autocomplete="off" spellcheck="false" placeholder="Search country or code"></div><ul class="comboList inPop" id="lb-dial" role="listbox"></ul></div><span class="err" aria-live="polite"></span></div>
     <p class="note c12">Fill in only if different from the billing address.</p>
-    <div class="fld addr c12" data-addr="shipping"><label class="lab" for="f-shipping_address_line_1">Shipping Address</label><div class="addrBox"><svg class="lupa" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5"></path></svg><input type="text" id="f-shipping_address_line_1" name="shipping_address_line_1" data-obj="0-1" role="combobox" aria-autocomplete="list" aria-controls="lb-shipping_address_line_1" autocomplete="off" placeholder="Start typing your address"></div><ul class="comboList" id="lb-shipping_address_line_1" role="listbox" hidden></ul><span class="err" aria-live="polite"></span></div>
+    <div class="fld addr c12" data-addr="shipping"><label class="lab" for="f-shipping_address_line_1">Shipping Address</label><div class="addrBox"><svg class="lupa" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5"></path></svg><input type="text" id="f-shipping_address_line_1" name="shipping_address_line_1" data-obj="0-1" aria-controls="lb-shipping_address_line_1" autocomplete="street-address"></div><ul class="comboList" id="lb-shipping_address_line_1" role="listbox" hidden></ul><span class="err" aria-live="polite"></span></div>
     <label class="fld c6" for="f-shipping_postal_code"><span class="lab">Shipping Postal Code</span><input type="text" id="f-shipping_postal_code" name="shipping_postal_code" data-obj="0-1"><span class="err" aria-live="polite"></span></label>
     <label class="fld c6" for="f-shipping_city"><span class="lab">Shipping City</span><input type="text" id="f-shipping_city" name="shipping_city" data-obj="0-1"><span class="err" aria-live="polite"></span></label>
   </div>
-  <div class="navRow"><button type="button" class="cta quiet" data-prev><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="15 6 9 12 15 18"></polyline></svg>Previous</button><button type="button" class="cta go" data-next>Next<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="9 6 15 12 9 18"></polyline></svg></button></div>
+  <div class="navRow"><button type="button" class="cta quiet" data-prev><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="15 6 9 12 15 18"></polyline></svg>Previous</button><button type="button" class="cta" data-next>Next<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="9 6 15 12 9 18"></polyline></svg></button></div>
 </div>
 <div role="group" aria-labelledby="st2" class="step" data-step="2" hidden>
   <div class="stepHead" id="st2"><span class="eyebrow">Step 03 of 03</span><span class="stepTitle">Comments</span></div>
@@ -5749,7 +5757,7 @@ body{font-family:var(--font-sans)}</style><meta charSet="utf-8"/><meta name="vie
     <label class="fld c12" for="f-comentarios_formulario"><span class="lab">Is there anything else you would like to add or share with us?</span><textarea rows="4" id="f-comentarios_formulario" name="comentarios_formulario" data-obj="0-1"></textarea><span class="err" aria-live="polite"></span></label>
     <label class="fld check c12"><input type="checkbox" value="true" id="f-acepto_que_rols_carpets_pueda_almacenar_y_procesar_mis_datos_personales_de_acuerdo_a_la_politica_de" name="acepto_que_rols_carpets_pueda_almacenar_y_procesar_mis_datos_personales_de_acuerdo_a_la_politica_de" data-obj="0-1" required><span class="box" aria-hidden="true"></span><span class="ctext">I agree that Rols Carpets may store and process my personal data in accordance with the company's <a href="https://www.rolscarpets.com/en/privacy-policy/" target="_blank" rel="noopener">privacy policy</a>.<span class="req" aria-hidden="true">*</span></span><span class="err" aria-live="polite"></span></label>
   </div>
-  <div class="navRow"><button type="button" class="cta quiet" data-prev><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="15 6 9 12 15 18"></polyline></svg>Previous</button><button type="submit" class="cta go">Submit<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="9 6 15 12 9 18"></polyline></svg></button></div>
+  <div class="navRow"><button type="button" class="cta quiet" data-prev><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="15 6 9 12 15 18"></polyline></svg>Previous</button><button type="submit" class="cta">Submit<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="9 6 15 12 9 18"></polyline></svg></button></div>
 </div>
       <p class="formErr" role="alert" hidden></p>
     </form>
@@ -6775,6 +6783,7 @@ body{font-family:var(--font-sans)}</style><meta charSet="utf-8"/><meta name="vie
   function check(el){
     var box=el.closest('.fld'), err=box.querySelector('.err'), msg='';
     if(el.type==='checkbox'){ if(el.required && !el.checked) msg=MSG.check; }
+    else if(el.classList.contains('pickBtn')){ var hp=box.querySelector('input[type=hidden]'); if(el.hasAttribute('data-required') && !hp.value) msg=MSG.req; }
     else if(el.hasAttribute('data-combo')){ var h=box.querySelector('input[type=hidden]'); if(el.required && !h.value) msg=el.value.trim()?MSG.pick:MSG.req; }
     else { var v=el.value.trim();
       if(el.required && !v) msg=MSG.req;
@@ -6784,7 +6793,7 @@ body{font-family:var(--font-sans)}</style><meta charSet="utf-8"/><meta name="vie
   }
   function valid(i){
     var ok=true, first=null;
-    steps[i].querySelectorAll('input:not([type=hidden]):not(.nochk),select,textarea').forEach(function(el){
+    steps[i].querySelectorAll('input:not([type=hidden]):not(.nochk),select,textarea,.pickBtn').forEach(function(el){
       if(!check(el)){ ok=false; if(!first) first=el; } });
     if(first) first.focus(); return ok;
   }
@@ -6853,6 +6862,27 @@ body{font-family:var(--font-sans)}</style><meta charSet="utf-8"/><meta name="vie
     list.addEventListener('mousedown',function(e){ var li=e.target.closest('li[data-k]'); if(!li) return; e.preventDefault(); opts.pick(items[+li.dataset.k]); });
     return {render:render, open:open, close:close};
   }
+
+  // ---------- custom select (professional sector) ----------
+  [].forEach.call(document.querySelectorAll('[data-pick]'),function(fld){
+    var b=fld.querySelector('.pickBtn'), list=fld.querySelector('.comboList'), hid=fld.querySelector('input[type=hidden]'), val=fld.querySelector('.pickVal');
+    var lis=[].slice.call(list.children), act=-1;
+    function mark(k){ lis.forEach(function(li,j){ li.classList.toggle('act',j===k); }); act=k; if(lis[k]) lis[k].scrollIntoView({block:'nearest'}); }
+    function open(){ list.hidden=false; fld.classList.add('open'); mark(Math.max(0,lis.findIndex(function(li){ return li.dataset.v===hid.value; }))); }
+    function close(){ list.hidden=true; fld.classList.remove('open'); }
+    function pick(k){ var li=lis[k]; hid.value=li.dataset.v; val.textContent=li.textContent; fld.classList.add('has');
+      lis.forEach(function(x){ x.setAttribute('aria-selected', x===li?'true':'false'); }); close(); b.focus(); fire(b); }
+    b.addEventListener('click',function(){ list.hidden?open():close(); });
+    b.addEventListener('keydown',function(e){
+      if(e.key==='ArrowDown'||e.key==='ArrowUp'){ e.preventDefault(); if(list.hidden) open(); else mark((act+(e.key==='ArrowDown'?1:-1)+lis.length)%lis.length); }
+      else if(e.key==='Enter' && !list.hidden){ e.preventDefault(); pick(act); }
+      else if(e.key==='Escape' && !list.hidden){ e.preventDefault(); close(); }
+      else if(e.key==='Tab'){ close(); }
+    });
+    list.addEventListener('mousedown',function(e){ var li=e.target.closest('li'); if(!li) return; e.preventDefault(); pick(lis.indexOf(li)); });
+    list.addEventListener('mousemove',function(e){ var li=e.target.closest('li'); if(li) mark(lis.indexOf(li)); });
+    document.addEventListener('mousedown',function(e){ if(!list.hidden && !fld.contains(e.target)) close(); });
+  });
 
   // ---------- country ----------
   var cfld=document.querySelector('[data-country]');
@@ -6937,8 +6967,11 @@ body{font-family:var(--font-sans)}</style><meta charSet="utf-8"/><meta name="vie
   }
   var NUM_FIRST=['us','gb','ca','au','nz','ie','fr','za','in','sg','il','ph','my','lu','be'];
   function comp(cs,type,short){ var c=cs.find(function(x){ return x.types.indexOf(type)>=0; }); return c ? (short?c.shortText:c.longText) : ''; }
-  [].forEach.call(document.querySelectorAll('[data-addr]'),function(fld){
-    var inp=fld.querySelector('input'), list=fld.querySelector('.comboList'), kind=fld.dataset.addr;
+  if(GMAPS_KEY) [].forEach.call(document.querySelectorAll('[data-addr]'),function(fld){
+    fld.classList.add('live');
+    var inp=fld.querySelector('input');
+    inp.setAttribute('role','combobox'); inp.setAttribute('aria-autocomplete','list'); inp.setAttribute('autocomplete','off'); inp.placeholder='Start typing your address';
+    inp=fld.querySelector('input'), list=fld.querySelector('.comboList'), kind=fld.dataset.addr;
     var lib=null, token=null, seq=0, timer=null;
     var alb=listbox(inp, list, {
       html:function(s){ var p=s.placePrediction; return '<span>'+esc(p.mainText?p.mainText.toString():p.text.toString())+(p.secondaryText?'<span class="sub">'+esc(p.secondaryText.toString())+'</span>':'')+'</span>'; },
