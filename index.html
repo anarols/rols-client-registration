@@ -83,6 +83,9 @@
 .done{outline:0}
 .done .stepTitle{margin-top:12px}
 .doneCtas{display:flex;flex-wrap:wrap;gap:16px 32px;margin-top:36px}
+.c4{grid-column:span 12}
+@media(min-width:768px){.c4{grid-column:span 4}}
+.grid12{align-items:end}
 .cta.nc{align-items:flex-end;gap:14px;padding-bottom:8px;text-transform:none;letter-spacing:0;font-size:inherit}
 .cta.nc .nx{display:flex;flex-direction:column;align-items:flex-start}
 .cta.nc small{font:500 9.5px/1 var(--font-montserrat);letter-spacing:.16em;text-transform:uppercase;color:color-mix(in srgb,var(--foreground) 55%,transparent);margin-bottom:8px}
@@ -5721,7 +5724,7 @@ body{font-family:var(--font-sans)}</style><meta charSet="utf-8"/><meta name="vie
     <p class="eyebrow">Client registration</p>
     <h1>New client registration form</h1>
     <p class="lead">Tell us about your business and we'll set up your client account. Just three short steps.</p>
-    <ol class="regSteps" aria-label="Form steps"><li class="on"><button type="button" data-goto="0" ><span class="n">01</span><span class="t2">Contact Information</span><span class="s">Company and billing details</span></button></li><li><button type="button" data-goto="1" disabled><span class="n">02</span><span class="t2">Shipping Information</span><span class="s">Who receives the orders</span></button></li><li><button type="button" data-goto="2" disabled><span class="n">03</span><span class="t2">Comments</span><span class="s">Anything else you want to share</span></button></li></ol>
+    <ol class="regSteps" aria-label="Form steps"><li class="on"><button type="button" data-goto="0" ><span class="n">01</span><span class="t2">Contact Information</span><span class="s">Company and billing details</span></button></li><li><button type="button" data-goto="1" disabled><span class="n">02</span><span class="t2">Shipping Information</span><span class="s">Who receives the orders</span></button></li><li><button type="button" data-goto="2" disabled><span class="n">03</span><span class="t2">A bit more about you</span><span class="s">Sector, communications and comments</span></button></li></ol>
   </div>
   <div class="regPanel">
     <form id="regForm" novalidate>
@@ -5731,14 +5734,11 @@ body{font-family:var(--font-sans)}</style><meta charSet="utf-8"/><meta name="vie
     <label class="fld c6" for="f-cif_empresa"><span class="lab">Company Tax ID<span class="req" aria-hidden="true">*</span></span><input type="text" id="f-cif_empresa" name="cif_empresa" data-obj="0-1" required><span class="err" aria-live="polite"></span></label>
     <label class="fld c6" for="f-company"><span class="lab">Legal company name<span class="req" aria-hidden="true">*</span></span><input type="text" id="f-company" name="company" data-obj="0-1" required autocomplete="organization"><span class="err" aria-live="polite"></span></label>
     <label class="fld c6" for="f-name"><span class="lab">Trade name</span><input type="text" id="f-name" name="name" data-obj="0-2"><span class="err" aria-live="polite"></span></label>
-    <div class="fld pick c6" data-pick><span class="lab" id="lab-sector_para_formulario_hubspot">Professional sector<span class="req" aria-hidden="true">*</span></span><button type="button" class="pickBtn" id="f-sector_para_formulario_hubspot" aria-haspopup="listbox" aria-labelledby="lab-sector_para_formulario_hubspot f-sector_para_formulario_hubspot" data-required><span class="pickVal">Select</span><span class="chev" aria-hidden="true"></span></button><ul class="comboList" id="lb-sector_para_formulario_hubspot" role="listbox" tabindex="-1" hidden><li role="option" data-v="Arquitecto">Architect</li><li role="option" data-v="Interiorista">Interior Designer</li><li role="option" data-v="Hotel">Hotel</li><li role="option" data-v="Distribuidor">Dealer</li><li role="option" data-v="Tienda">Retailer</li><li role="option" data-v="Otro">Other</li></ul><input type="hidden" name="sector_para_formulario_hubspot" data-obj="0-1"><span class="err" aria-live="polite"></span></div>
-    <div class="fld addr c6" data-addr="billing"><label class="lab" for="f-billing_address_line_1">Billing Address<span class="req" aria-hidden="true">*</span></label><div class="addrBox"><svg class="lupa" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5"></path></svg><input type="text" id="f-billing_address_line_1" name="billing_address_line_1" data-obj="0-1" aria-controls="lb-billing_address_line_1" autocomplete="street-address" required></div><ul class="comboList" id="lb-billing_address_line_1" role="listbox" hidden></ul><span class="err" aria-live="polite"></span></div>
-    <label class="fld c3" for="f-zip"><span class="lab">ZIP code<span class="req" aria-hidden="true">*</span></span><input type="text" id="f-zip" name="zip" data-obj="0-1" required autocomplete="postal-code"><span class="err" aria-live="polite"></span></label>
-    <label class="fld c3" for="f-billing_city"><span class="lab">Billing city<span class="req" aria-hidden="true">*</span></span><input type="text" id="f-billing_city" name="billing_city" data-obj="0-1" required><span class="err" aria-live="polite"></span></label>
-    <div class="fld combo c6" data-country><label class="lab" for="f-pais">Country<span class="req" aria-hidden="true">*</span></label><div class="comboBox"><img class="flag" alt="" hidden><input type="text" id="f-pais" class="comboInput" role="combobox" aria-autocomplete="list" aria-controls="lb-pais" autocomplete="off" spellcheck="false" placeholder="Type to search" data-combo required><span class="chev" aria-hidden="true"></span></div><ul class="comboList" id="lb-pais" role="listbox" hidden></ul><input type="hidden" name="pais" data-obj="0-1"><span class="err" aria-live="polite"></span></div>
     <label class="fld c6" for="f-correo_de_facturacion"><span class="lab">Billing e-mail<span class="req" aria-hidden="true">*</span></span><input type="email" id="f-correo_de_facturacion" name="correo_de_facturacion" data-obj="0-1" required><span class="err" aria-live="polite"></span></label>
-    <label class="fld c6" for="f-email"><span class="lab">Email for commercial communications<span class="req" aria-hidden="true">*</span></span><input type="email" id="f-email" name="email" data-obj="0-1" required autocomplete="email"><span class="err" aria-live="polite"></span></label>
-    <label class="fld c6" for="f-como_nos_ha_conocido_"><span class="lab">How did you hear about us?<span class="req" aria-hidden="true">*</span></span><input type="text" id="f-como_nos_ha_conocido_" name="como_nos_ha_conocido_" data-obj="0-1" required><span class="err" aria-live="polite"></span></label>
+    <div class="fld addr c12" data-addr="billing"><label class="lab" for="f-billing_address_line_1">Billing Address<span class="req" aria-hidden="true">*</span></label><div class="addrBox"><svg class="lupa" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5"></path></svg><input type="text" id="f-billing_address_line_1" name="billing_address_line_1" data-obj="0-1" aria-controls="lb-billing_address_line_1" autocomplete="street-address" required></div><ul class="comboList" id="lb-billing_address_line_1" role="listbox" hidden></ul><span class="err" aria-live="polite"></span></div>
+    <label class="fld c6" for="f-zip"><span class="lab">ZIP code<span class="req" aria-hidden="true">*</span></span><input type="text" id="f-zip" name="zip" data-obj="0-1" required autocomplete="postal-code"><span class="err" aria-live="polite"></span></label>
+    <label class="fld c6" for="f-billing_city"><span class="lab">Billing city<span class="req" aria-hidden="true">*</span></span><input type="text" id="f-billing_city" name="billing_city" data-obj="0-1" required><span class="err" aria-live="polite"></span></label>
+    <div class="fld combo c6" data-country><label class="lab" for="f-pais">Country<span class="req" aria-hidden="true">*</span></label><div class="comboBox"><img class="flag" alt="" hidden><input type="text" id="f-pais" class="comboInput" role="combobox" aria-autocomplete="list" aria-controls="lb-pais" autocomplete="off" spellcheck="false" placeholder="Type to search" data-combo required><span class="chev" aria-hidden="true"></span></div><ul class="comboList" id="lb-pais" role="listbox" hidden></ul><input type="hidden" name="pais" data-obj="0-1"><span class="err" aria-live="polite"></span></div>
     <input type="hidden" name="hs_lead_status" data-obj="0-1" value="En proceso - Ha rellenado ficha alta cliente">
   </div>
   <div class="navRow"><span></span><button type="button" class="cta nc" data-next><span class="nx"><small>Next step</small><b>Shipping Information</b></span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="9 6 15 12 9 18"></polyline></svg></button></div>
@@ -5754,11 +5754,14 @@ body{font-family:var(--font-sans)}</style><meta charSet="utf-8"/><meta name="vie
     <label class="fld c6" for="f-shipping_postal_code"><span class="lab">Shipping Postal Code</span><input type="text" id="f-shipping_postal_code" name="shipping_postal_code" data-obj="0-1"><span class="err" aria-live="polite"></span></label>
     <label class="fld c6" for="f-shipping_city"><span class="lab">Shipping City</span><input type="text" id="f-shipping_city" name="shipping_city" data-obj="0-1"><span class="err" aria-live="polite"></span></label>
   </div>
-  <div class="navRow"><button type="button" class="cta quiet" data-prev><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="15 6 9 12 15 18"></polyline></svg>Previous</button><button type="button" class="cta nc" data-next><span class="nx"><small>Next step</small><b>Comments</b></span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="9 6 15 12 9 18"></polyline></svg></button></div>
+  <div class="navRow"><button type="button" class="cta quiet" data-prev><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="15 6 9 12 15 18"></polyline></svg>Previous</button><button type="button" class="cta nc" data-next><span class="nx"><small>Next step</small><b>A bit more about you</b></span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polyline points="9 6 15 12 9 18"></polyline></svg></button></div>
 </div>
 <div role="group" aria-labelledby="st2" class="step" data-step="2" hidden>
-  <div class="stepHead" id="st2"><span class="eyebrow">Step 03 of 03</span><span class="stepTitle">Comments</span></div>
+  <div class="stepHead" id="st2"><span class="eyebrow">Step 03 of 03</span><span class="stepTitle">A bit more about you</span></div>
   <div class="grid12">
+    <div class="fld pick c6" data-pick><span class="lab" id="lab-sector_para_formulario_hubspot">Professional sector<span class="req" aria-hidden="true">*</span></span><button type="button" class="pickBtn" id="f-sector_para_formulario_hubspot" aria-haspopup="listbox" aria-labelledby="lab-sector_para_formulario_hubspot f-sector_para_formulario_hubspot" data-required><span class="pickVal">Select</span><span class="chev" aria-hidden="true"></span></button><ul class="comboList" id="lb-sector_para_formulario_hubspot" role="listbox" tabindex="-1" hidden><li role="option" data-v="Arquitecto">Architect</li><li role="option" data-v="Interiorista">Interior Designer</li><li role="option" data-v="Hotel">Hotel</li><li role="option" data-v="Distribuidor">Dealer</li><li role="option" data-v="Tienda">Retailer</li><li role="option" data-v="Otro">Other</li></ul><input type="hidden" name="sector_para_formulario_hubspot" data-obj="0-1"><span class="err" aria-live="polite"></span></div>
+    <label class="fld c6" for="f-email"><span class="lab">Email for commercial communications<span class="req" aria-hidden="true">*</span></span><input type="email" id="f-email" name="email" data-obj="0-1" required autocomplete="email"><span class="err" aria-live="polite"></span></label>
+    <label class="fld c12" for="f-como_nos_ha_conocido_"><span class="lab">How did you hear about us?<span class="req" aria-hidden="true">*</span></span><input type="text" id="f-como_nos_ha_conocido_" name="como_nos_ha_conocido_" data-obj="0-1" required><span class="err" aria-live="polite"></span></label>
     <label class="fld c12" for="f-comentarios_formulario"><span class="lab">Is there anything else you would like to add or share with us?</span><textarea rows="4" id="f-comentarios_formulario" name="comentarios_formulario" data-obj="0-1"></textarea><span class="err" aria-live="polite"></span></label>
     <label class="fld check c12"><input type="checkbox" value="true" id="f-acepto_que_rols_carpets_pueda_almacenar_y_procesar_mis_datos_personales_de_acuerdo_a_la_politica_de" name="acepto_que_rols_carpets_pueda_almacenar_y_procesar_mis_datos_personales_de_acuerdo_a_la_politica_de" data-obj="0-1" required><span class="box" aria-hidden="true"></span><span class="ctext">I agree that Rols Carpets may store and process my personal data in accordance with the company's <a href="https://www.rolscarpets.com/en/privacy-policy/" target="_blank" rel="noopener">privacy policy</a>.<span class="req" aria-hidden="true">*</span></span><span class="err" aria-live="polite"></span></label>
   </div>
@@ -6775,7 +6778,7 @@ body{font-family:var(--font-sans)}</style><meta charSet="utf-8"/><meta name="vie
   var form=document.getElementById('regForm'); if(!form) return;
   var steps=[].slice.call(form.querySelectorAll('.step'));
   var marks=[].slice.call(document.querySelectorAll('.regSteps li'));
-  var cur=0, reached=2;
+  var cur=0, reached=0;
   var MSG={req:'Please complete this required field.',email:'Email must be formatted correctly.',check:'Please accept to continue.',pick:'Please choose a country from the list.',tel:'Please enter a valid phone number.'};
   function show(i,focus){
     steps.forEach(function(s,k){ s.hidden=k!==i; s.classList.toggle('on',k===i); });
@@ -6805,10 +6808,10 @@ body{font-family:var(--font-sans)}</style><meta charSet="utf-8"/><meta name="vie
   form.addEventListener('input',function(e){ if(e.target.closest('.fld.bad')) check(e.target); });
   form.addEventListener('change',function(e){ if(e.target.closest('.fld.bad')) check(e.target); });
   form.addEventListener('click',function(e){
-    if(e.target.closest('[data-next]')){ show(cur+1,true); }
+    if(e.target.closest('[data-next]')){ if(valid(cur)){ reached=Math.max(reached,cur+1); show(cur+1,true); } }
     if(e.target.closest('[data-prev]')) show(cur-1,true);
   });
-  marks.forEach(function(m,k){ m.querySelector('button').addEventListener('click',function(){ show(k,true); }); });
+  marks.forEach(function(m,k){ m.querySelector('button').addEventListener('click',function(){ if(k<=reached && (k<cur || valid(cur))) show(k,true); }); });
   function cookie(n){ var m=document.cookie.match('(?:^|; )'+n+'=([^;]*)'); return m?decodeURIComponent(m[1]):null; }
   form.addEventListener('submit',function(e){
     e.preventDefault();
